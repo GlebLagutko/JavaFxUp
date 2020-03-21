@@ -1,10 +1,6 @@
 package sample;
 
-import javafx.event.EventHandler;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
-import javafx.scene.input.MouseEvent;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

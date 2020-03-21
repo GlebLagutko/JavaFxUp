@@ -12,14 +12,14 @@ import java.util.regex.Pattern;
 
 
 public class ControllerFirstTask {
-    final static Pattern EMAIL = Pattern.compile("[a-z]([._]?[a-z]+)*[@][a-z][a-z]*[.]((org)|(net)|(ru)|(com)|(by))", Pattern.CASE_INSENSITIVE);
+    private final static Pattern EMAIL = Pattern.compile("[a-z]([._]?[a-z]+)*[@][a-z][a-z]*[.]((org)|(net)|(ru)|(com)|(by))", Pattern.CASE_INSENSITIVE);
 
-    final static Pattern N = Pattern.compile("([0-9]*)([1-9])([0-9]*)");
-    final static Pattern Z = Pattern.compile("[-+]?([0-9]*)([0-9])([0-9]*)");
-    final static Pattern R = Pattern.compile("[-+]?(([0-9]*[.]?[0-9]+)|([0-9]+[.]?[0-9]*))([eE][-+]?[0-9]+)?");
-    final static Pattern DATE = Pattern.compile("([0-2][0-9]|(3)[0-1])((.)|(\\/)|(-))(((0)[0-9])|((1)[0-2]))((.)|(\\/)|(-))(\\d{4})");
-    final static Pattern TIME = Pattern.compile("(([0-1][0-9])|([2][0-3])):([0-5][0-9])");
-    final static String[] ELEMENTS = {"Natural", "Date", "E-Mail", "Time", "Real", "Integer"};
+    private final static Pattern N = Pattern.compile("([0-9]*)([1-9])([0-9]*)");
+    private final static Pattern Z = Pattern.compile("[-+]?([0-9]*)([0-9])([0-9]*)");
+    private final static Pattern R = Pattern.compile("[-+]?(([0-9]*[.]?[0-9]+)|([0-9]+[.]?[0-9]*))([eE][-+]?[0-9]+)?");
+    private final static Pattern DATE = Pattern.compile("([0-2][0-9]|(3)[0-1])((.)|(/)|(-))(((0)[0-9])|((1)[0-2]))((.)|(/)|(-))(\\d{4})");
+    private final static Pattern TIME = Pattern.compile("(([0-1][0-9])|([2][0-3])):([0-5][0-9])");
+    private final static String[] ELEMENTS = {"Natural", "Date", "E-Mail", "Time", "Real", "Integer"};
 
 
     @FXML

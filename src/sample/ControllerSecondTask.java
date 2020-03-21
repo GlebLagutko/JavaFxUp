@@ -7,8 +7,8 @@ import java.util.regex.Pattern;
 
 public class ControllerSecondTask {
 
-    final static Pattern DATE = Pattern.compile("([0-2][0-9]|(3)[0-1])((.)|(\\/)|(-))(((0)[0-9])|((1)[0-2]))((.)|(\\/)|(-))(\\d{4})");
-    final static String START_STRING = " ";
+    private final static Pattern DATE = Pattern.compile("([0-2][0-9]|(3)[0-1])((.)|(/)|(-))(((0)[0-9])|((1)[0-2]))((.)|(/)|(-))(\\d{4})");
+    private final static String START_STRING = " ";
 
 
     public TextArea inputArea;

@@ -12,13 +12,18 @@ import java.util.regex.Pattern;
 
 
 public class ControllerFirstTask {
-    private final static Pattern EMAIL = Pattern.compile("[a-z]([._]?[a-z]+)*[@][a-z][a-z]*[.]((org)|(net)|(ru)|(com)|(by))", Pattern.CASE_INSENSITIVE);
 
-    private final static Pattern N = Pattern.compile("([0-9]*)([1-9])([0-9]*)");
-    private final static Pattern Z = Pattern.compile("[-+]?([0-9]*)([0-9])([0-9]*)");
-    private final static Pattern R = Pattern.compile("[-+]?(([0-9]*[.]?[0-9]+)|([0-9]+[.]?[0-9]*))([eE][-+]?[0-9]+)?");
-    private final static Pattern DATE = Pattern.compile("([0-2][0-9]|(3)[0-1])((.)|(/)|(-))(((0)[0-9])|((1)[0-2]))((.)|(/)|(-))(\\d{4})");
+    private final static Pattern EMAIL = Pattern.compile("[a-z]([._]?[a-z]+)*[@][a-z][a-z]*[.]((org)|(net)|(ru)|(com)|(by))", Pattern.CASE_INSENSITIVE);
+    private final static Pattern N = Pattern.compile("[1-9][0-9]*");
+    private final static Pattern Z = Pattern.compile("(0)|[-+]?([1-9][0-9]*)");
+    private final static Pattern R = Pattern.compile("[-+]?(([0-9]*[.][0-9]+)"+
+            "|([0-9]+[.][0-9]*))([eE][-+]?[0-9]+)?" +
+            "|([-+]?[0-9]+([eE][-+]?[0-9]+))");
+    private final static Pattern DATE = Pattern.compile("([0-2][0-9]|(3)[0-1])((.)|(/)|(-))((01)|(03)|(05)|(07)|(10)|(12))((.)|(/)|(-))(\\d{4})" +
+            "|([0-2][0-9]|(30)])((.)|(/)|(-))((04)|(06)|(08)|(09)|(11))((.)|(/)|(-))(\\d{4})"
+            + "|([0-2][0-9])((.)|(/)|(-))((02))((.)|(/)|(-))(\\d{4})");
     private final static Pattern TIME = Pattern.compile("(([0-1][0-9])|([2][0-3])):([0-5][0-9])");
+
     private final static String[] ELEMENTS = {"Natural", "Date", "E-Mail", "Time", "Real", "Integer"};
 
 
@@ -34,61 +39,76 @@ public class ControllerFirstTask {
 
     public void initialize() {
 
+        /*String musicFile = "C:\\Users\\Dell\\Downloads\\test2.mp3";
+        Media sound = new Media(new File(musicFile).toURI().toString());
+        MediaPlayer mediaPlayer = new MediaPlayer(sound);
+        userCircle.setOnMouseEntered(e -> mediaPlayer.play());
+        userCircle.setOnMouseExited(e -> mediaPlayer.pause());*/
+
         userComboBox.setItems(FXCollections.observableArrayList(ELEMENTS));
         userComboBox.setValue("Integer");
 
-        usernameTextField.textProperty().addListener((observable, oldValue, newValue) -> {
-            Matcher m;
-            switch (userComboBox.getValue()) {
-                case "Natural":
-                    m = N.matcher(newValue);
-                    if (m.matches())
-                        userCircle.setFill(Color.GREEN);
-                    else
-                        userCircle.setFill(Color.RED);
-                    break;
-
-                case "Date":
-                    m = DATE.matcher(newValue);
-
-                    if (m.matches())
-                        userCircle.setFill(Color.GREEN);
-                    else
-                        userCircle.setFill(Color.RED);
-                    break;
-
-                case "Integer":
-                    m = Z.matcher(newValue);
-                    if (m.matches())
-                        userCircle.setFill(Color.GREEN);
-                    else
-                        userCircle.setFill(Color.RED);
-                    break;
-                case "E-Mail":
-                    m = EMAIL.matcher(newValue);
-                    if (m.matches())
-                        userCircle.setFill(Color.GREEN);
-                    else
-                        userCircle.setFill(Color.RED);
-                    break;
-
-                case "Time":
-                    m = TIME.matcher(newValue);
-                    if (m.matches())
-                        userCircle.setFill(Color.GREEN);
-                    else
-                        userCircle.setFill(Color.RED);
-                    break;
-
-                case "Real":
-                    m = R.matcher(newValue);
-                    if (m.matches())
-                        userCircle.setFill(Color.GREEN);
-                    else
-                        userCircle.setFill(Color.RED);
-                    break;
-            }
+        userComboBox.setOnAction(e -> {
+            String newValue = usernameTextField.getText();
+            checkString(newValue);
         });
+
+        usernameTextField.textProperty().addListener((observable, oldValue, newValue) -> {
+            checkString(newValue);
+        });
+    }
+
+    private void checkString(String newValue) {
+        Matcher m;
+        switch (userComboBox.getValue()) {
+            case "Natural":
+                m = N.matcher(newValue);
+                if (m.matches())
+                    userCircle.setFill(Color.GREEN);
+                else
+                    userCircle.setFill(Color.RED);
+                break;
+
+            case "Date":
+                m = DATE.matcher(newValue);
+
+                if (m.matches())
+                    userCircle.setFill(Color.GREEN);
+                else
+                    userCircle.setFill(Color.RED);
+                break;
+
+            case "Integer":
+                m = Z.matcher(newValue);
+                if (m.matches())
+                    userCircle.setFill(Color.GREEN);
+                else
+                    userCircle.setFill(Color.RED);
+                break;
+            case "E-Mail":
+                m = EMAIL.matcher(newValue);
+                if (m.matches())
+                    userCircle.setFill(Color.GREEN);
+                else
+                    userCircle.setFill(Color.RED);
+                break;
+
+            case "Time":
+                m = TIME.matcher(newValue);
+                if (m.matches())
+                    userCircle.setFill(Color.GREEN);
+                else
+                    userCircle.setFill(Color.RED);
+                break;
+
+            case "Real":
+                m = R.matcher(newValue);
+                if (m.matches())
+                    userCircle.setFill(Color.GREEN);
+                else
+                    userCircle.setFill(Color.RED);
+                break;
+        }
     }
 }
 
